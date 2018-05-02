@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>CourseKra</title>
+        <link rel="stylesheet" type="text/css" href="css/reset.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<!--
+        <script src="js/firebase.js"></script>
+        <script src="js/firestore.js"></script>
+-->
+        
+        <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-firestore.js"></script>
+        
+
+        
+        
+    </head>
+    <body>
+        <!-- log in Modal -->
+        <div class="modal fade" id="log_in" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Log In</h5>
+              </div>
+              <div class="modal-body">
+                <label id="userOutput">Please enter your name:</label>
+                <input type="text" name="user" id="userName">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="saveName">Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+       <div class="top">
+           <h3 class="logo">CourseKra</h3>
+       </div>
+        <div class="mainContent">
+          <div class="row filter"></div>
+          <div class="row workspaces">
+             <div class="col-6 col-md-4 block">
+                 <div class="block-inner-1">
+                    <h3>How does a water kettle work?</h3>
+                    <br>
+                     <p>This video lecture demonstrates the mechanism of an electronic kettle. 
+                     </p>
+                     <p style="font-weight: 700">Key concepts in the video</p>
+                     <p>
+                         1. How does an electronic kettle heat up water?<br>
+                     2. How does the kettle disconnect when the water is boiling?<br>
+                     &emsp;&emsp;2.1 Common misconception<br>
+                        &emsp;&emsp;&emsp;&emsp;- use temperature sensor<br> 
+                         &emsp;&emsp;&emsp;&emsp;- Sensor accuracy<br>
+                         &emsp;&emsp;&emsp;&emsp;- Atmosphere pressure affects water’s &emsp;&emsp;&emsp;&emsp;&emsp;boiling point<br>
+                     &emsp;&emsp;2.2 The structure and attributes of bi-metal<br>
+                     &emsp;&emsp;2.3 Vapor idea and how it works<br><br><br><br><br><br>
+                     </p>
+                 </div>
+              </div>
+              
+              <div class="col-12 col-md-8 block">
+                  <div class="block-inner-2">
+                      <div id="player"></div>
+                  </div>
+              </div>
+            
+          </div>
+        <section class="discussion">
+          <div class="row filter"></div>
+          <div class="row workspaces">
+             <div class="col-md-12 block">
+                  <div class="block-inner-2">
+                         <h3 style="margin-top: 20px;">Discussion Section</h3>
+                          <p style="margin-top: 15px;">Use labels to filter out the questions </p>
+                          <form>
+                          
+                            <input type="checkbox" id="che_all" name="che_all" value="all">
+                            <label for="che_all">Select all</label>
+                            
+                            <input type="checkbox" id="che_heat" name="che_heat" value="heat">
+                            <label for="che_heat">heat up water</label>
+                            
+                            <input type="checkbox" id="che_sensor" name="che_accuracy" value="sensor">
+                            <label for="che_sensor">sensor accuracy</label>
+                            
+                            <input type="checkbox" id="che_pressure" name="che_pressure" value="pressure">
+                            <label class="che_pressure">atmosphere pressure</label>
+                            
+                            <input type="checkbox" id="che_metal" name="che_metal" value="metal">
+                            <label class="che_metal">bi-metal</label>
+                            
+                            <input type="checkbox" id="che_vapor" name="che_vapor" value="vapor">
+                            <label class="che_vapor">vapor</label>
+                            
+                            <input type="checkbox" id="che_others" name="che_others" value="others">
+                            <label class="che_others">others</label>
+                          </form>
+                          
+                          <div id="question_pool">
+<!--                              use as a test-->
+                            <div id="question">
+                             <div id="name">
+                                 <p>What do you need to consider if you choose to use a temperature sensor?</p>
+                              </div>
+                              <div class="row workspaces">
+                                 <div id="keyword" class="col-xs-4">
+                                     sensor accuracy
+                                 </div>
+                                 <div id="date" class="col-xs-4">
+                                 date
+                                 </div>
+                                 <div id="reply" class="col-xs-4">
+                                     2 replies
+                                 </div>
+                              </div>
+                             
+                             
+                              </div>
+                          </div>
+                          <button type="button" id="add">Ask a question</button>
+                      
+                      
+                      
+                 </div>
+              
+             </div>
+          
+          </div>
+          </section>
+            
+          <section id="input">
+          <div class="row workspaces">
+             <div class="col-md-12 block">
+                  <div class="block-inner-2">
+                      
+                      <p>Have a question? Share your thoughts in the discussion section here.</p>
+                      <form>
+                          <label for="typeQ">Your question:</label>
+                          <textarea id="typeQ" name="typeQ" placeholder="Write your question" style="height:200px; width: 100%"></textarea>
+                          
+                          <label for="keyword_select">Select a key concept for your question</label>
+                            <select id="keyword_select" name="keyword_select">
+                              <option value="heat">heat</option>
+                              <option value="sensor">sensor accuracy</option>
+                              <option value="pressure">atmosphere pressure</option>
+                              <option value="metal">bi-metal</option>
+                              <option value="vapor">vapor</option>
+                              <option value="others">others</option>
+                            </select>
+
+                            <input type="submit" value="Submit">
+                      </form>
+                 
+                      
+                 </div>
+              </div>
+            </div>
+            </section>
+        </div>
+        
+    </body>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/forum.js"></script>
+    <script src="js/database.js"></script>
+</html>
