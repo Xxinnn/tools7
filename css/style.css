@@ -9,6 +9,32 @@ h3 {
 p {
     font-size: 1.125em;
 }
+.layer {
+    position: absolute;
+    z-index: 1;
+    width: 760px;
+    height: 518px;
+    top: 10px;
+    background-color: lightgrey;
+    opacity: 0.8;
+}
+.popup {
+    position: absolute;
+    top: 180px;
+    left: 250px;
+    border-radius: 10px;
+    background-color: #C5E0B4; 
+    width: 285px;
+    padding: 10px;
+    z-index: 3;
+    box-shadow: 0 20px 40px 0 rgba(15, 15, 15, 0.5);
+}
+.pop {
+    background-color: lightgray;
+    width: 80px;
+    border-radius: 10px;
+    align-items: center;
+}
 .top {
     height: 80px;
     width: 100%;
@@ -51,8 +77,6 @@ p {
 
 #question_pool {
     margin-top: 25px;
-    border: 1px solid lightgrey;
-    padding: 10px;
 }
 #name {
     font-weight: 700;
@@ -63,8 +87,10 @@ p {
 }
 
 #question {
-    border-bottom: 1px solid lightgrey;
+    border-bottom: 5px solid white;
+    padding: 5px;
     width: 100%;
+    background-color: aliceblue;
 }
 
 #add {
@@ -74,9 +100,27 @@ p {
     display: none;
 }
 
+#response {
+    padding: 5px;
+    border-bottom: 1px solid lightgrey;
+    width: 100%;
+    margin-left: 10px;
+}
 
-
+#typeResponse {
+    display: none;
+}
+ul li{
+    text-decoration: none;
+}
 input[type=submit], select {
     width: 10%;
     margin-left: 50px;
+}
+
+#user {
+    font-size: 0.9em;
+}
+#time {
+    font-size: 0.9em;
 }

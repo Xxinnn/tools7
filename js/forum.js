@@ -25,7 +25,8 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
       }
     });
   }
-        
+      
+document.getElementById('player').style['z-index']=-10;
   // 4. The API will call this function when the video player is ready.
 function onPlayerReady(event) {
     event.target.playVideo();
@@ -90,6 +91,32 @@ window.onload = function () {
 
 $( "#add" ).click(function() {
   $( '#input' ).css('display','block');
+    $('html, body').animate({
+    scrollTop: $("#typeQ").offset().top
+  }, 1000)
+})
+
+$('#b_p').click(function() {
+    $('html, body').animate({
+    scrollTop: $("#discussion").offset().top
+  }, 1000)
+})
+
+
+$('#b_a').click(function() {
+    $('html, body').animate({
+    scrollTop: $("#discussion").offset().top
+  }, 1000)
+})
+
+$('#b_c').click(function() {
+    gotoVideo();
+    $( '.layer' ).css('display','none');
+    $( '.popup' ).css('display','none');
 });
+
+function gotoVideo() {
+    player.seekTo(3,true);
+}
 
 

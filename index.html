@@ -15,30 +15,10 @@
         
         <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-firestore.js"></script>
-        
-
-        
-        
+    
     </head>
     <body>
-        <!-- log in Modal -->
-        <div class="modal fade" id="log_in" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Log In</h5>
-              </div>
-              <div class="modal-body">
-                <label id="userOutput">Please enter your name:</label>
-                <input type="text" name="user" id="userName">
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" id="saveName">Submit</button>
-              </div>
-            </div>
-          </div>
-        </div>
+        
         
         
        <div class="top">
@@ -70,11 +50,19 @@
               <div class="col-12 col-md-8 block">
                   <div class="block-inner-2">
                       <div id="player"></div>
+                      <div class="layer"></div>
+                      <div class="popup">
+                         <p>Do you understand how an electronic kettle heat up water?</p>
+                         <button type="button" class="pop" id="b_p">Post a question</button>
+                         <button type="button" class="pop" id="b_a">Answer a question</button>
+                         <button type="button" class="pop" id="b_c">Continue the video</button>
+                      </div>
                   </div>
               </div>
             
           </div>
-        <section class="discussion">
+<!--          all question panel-->
+        <section id="discussion">
           <div class="row filter"></div>
           <div class="row workspaces">
              <div class="col-md-12 block">
@@ -105,38 +93,55 @@
                             <label class="che_others">others</label>
                           </form>
                           
-                          <div id="question_pool">
+                          <ul id="question_pool">
 <!--                              use as a test-->
-                            <div id="question">
+<!--
+                            <li id="question">
                              <div id="name">
                                  <p>What do you need to consider if you choose to use a temperature sensor?</p>
                               </div>
                               <div class="row workspaces">
-                                 <div id="keyword" class="col-xs-4">
+                                 <div id="keyword" class="col-xs-3">
                                      sensor accuracy
                                  </div>
-                                 <div id="date" class="col-xs-4">
+                                 <div id="date" class="col-xs-3">
                                  date
                                  </div>
-                                 <div id="reply" class="col-xs-4">
-                                     2 replies
+                                 <div id="user" class="col-xs-3">
+                                 Last posted by user
                                  </div>
+                                  <button type="button" id="answer" onclick="showResponseModal(this.id)">Answer question</button>
+                                 
+                                 
                               </div>
-                             
-                             
-                              </div>
-                          </div>
-                          <button type="button" id="add">Ask a question</button>
-                      
-                      
-                      
+                              </li>
+                          <ul id="">
+                          
+                                 <li id="response">
+                                  <p>I think the question is good.</p>
+                                  <div class="row workspaces"><div id="user" class="col-xs-3">user</div>
+                                  <div id="date" class="col-xs-3">date</div></div>
+                                  </li>
+-->
+<!--
+                                  
+-->
+                              </ul>
+                              <form id="typeResponse">
+                                  <label for="typeA">Your answer:</label>
+                                  <textarea id="typeA" name="typeA" placeholder="Write your answer" style="height:200px; width: 100%"></textarea>
+                                  <button type="button" id="sumitA" onclick="sendResponse()">Submit</button>
+                              </form>
+                          
+                      </div>   
+                      <button type="button" id="add">Ask a question</button>        
                  </div>
-              
+            
              </div>
           
-          </div>
-          </section>
-            
+          </section>                    
+                  
+<!--            ask a question panel -->
           <section id="input">
           <div class="row workspaces">
              <div class="col-md-12 block">
@@ -157,7 +162,7 @@
                               <option value="others">others</option>
                             </select>
 
-                            <input type="submit" value="Submit">
+                          <button type="button" value="Submit" id="sumitQ" onclick="sendQuestion()">Submit</button>
                       </form>
                  
                       
@@ -167,6 +172,24 @@
             </section>
         </div>
         
+        <!-- log in Modal -->
+        <div class="modal fade" id="log_in" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Log In</h5>
+              </div>
+              <div class="modal-body">
+                <label id="userOutput">Please enter your name:</label>
+                <input type="text" name="user" id="userName">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="saveName">Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
     </body>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
